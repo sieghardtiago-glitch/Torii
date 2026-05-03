@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>加茂家 記録院 — 加茂 鳥居</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --parchment:#F2ECD8;--parchment-dark:#E8DFC4;--parchment-deep:#D9CBA8;
+  --ink:#1A1008;--ink-light:#3D2B10;--ink-faded:#7A6040;
+  --red:#8B0000;--red-light:#CC1111;--red-dim:#5A0000;--red-pale:rgba(139,0,0,0.08);
+  --gold:#8B6914;--gold-light:#C49A28;
+  --border:#C4AA78;--border-dark:#8B6914;
+  --serif:'Noto Serif JP',serif;--display:'Cinzel',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--ink);color:var(--ink);font-family:var(--serif);height:100%;overflow:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23p)' opacity='0.05'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
+.screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 1.2s ease;overflow:hidden;}
+.screen.active{opacity:1;pointer-events:all;}
+.screen.fade-out{opacity:0;pointer-events:none;}
+/* ACCESS */
+#screen-access{background:var(--ink);}
+.mon-circle{width:130px;height:130px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;position:relative;}
+.mon-circle::before{content:'';position:absolute;inset:8px;border:1px solid rgba(139,105,20,0.35);border-radius:50%;}
+.mon-kanji{font-family:var(--serif);font-size:44px;font-weight:700;color:var(--gold);text-shadow:0 0 25px rgba(139,105,20,0.5);}
+.access-title{font-family:var(--serif);font-size:clamp(16px,2.2vw,26px);color:var(--parchment);letter-spacing:0.4em;margin-bottom:6px;text-align:center;}
+.access-sub{font-family:var(--display);font-size:10px;color:var(--gold);letter-spacing:0.35em;text-transform:uppercase;text-align:center;margin-bottom:40px;}
+.access-div{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 28px;}
+.access-meta{text-align:center;margin-bottom:36px;}
+.access-meta-line{font-family:var(--display);font-size:10px;color:rgba(196,170,120,0.55);letter-spacing:0.18em;margin-bottom:5px;}
+.btn-p{display:inline-block;padding:13px 46px;border:1px solid var(--gold);color:var(--gold-light);font-family:var(--display);font-size:11px;letter-spacing:0.3em;text-transform:uppercase;cursor:pointer;background:rgba(139,105,20,0.07);transition:all 0.4s;outline:none;position:relative;}
+.btn-p::before,.btn-p::after{content:'✦';position:absolute;top:50%;transform:translateY(-50%);color:var(--gold);font-size:9px;opacity:0.5;transition:opacity 0.3s;}
+.btn-p::before{left:12px;}.btn-p::after{right:12px;}
+.btn-p:hover{background:rgba(139,105,20,0.16);box-shadow:0 0 28px rgba(139,105,20,0.18);color:var(--parchment);}
+.btn-p:hover::before,.btn-p:hover::after{opacity:1;}
+.corner-d{position:absolute;width:55px;height:55px;pointer-events:none;}
+.corner-d.tl{top:22px;left:22px;border-top:2px solid rgba(139,105,20,0.35);border-left:2px solid rgba(139,105,20,0.35);}
+.corner-d.tr{top:22px;right:22px;border-top:2px solid rgba(139,105,20,0.35);border-right:2px solid rgba(139,105,20,0.35);}
+.corner-d.bl{bottom:22px;left:22px;border-bottom:2px solid rgba(139,105,20,0.35);border-left:2px solid rgba(139,105,20,0.35);}
+.corner-d.br{bottom:22px;right:22px;border-bottom:2px solid rgba(139,105,20,0.35);border-right:2px solid rgba(139,105,20,0.35);}
+.jp-vert{position:absolute;font-family:var(--serif);writing-mode:vertical-rl;color:rgba(196,170,120,0.12);font-size:10px;letter-spacing:0.3em;pointer-events:none;font-weight:300;}
+.jp-vert.l{left:14px;top:50%;transform:translateY(-50%);}
+.jp-vert.r{right:14px;top:50%;transform:translateY(-50%);}
+/* SEAL */
+#screen-seal{background:var(--ink);cursor:pointer;}
+.seal-inst{font-family:var(--serif);font-size:11px;color:rgba(196,170,120,0.45);letter-spacing:0.3em;margin-bottom:44px;animation:pt 2s ease-in-out infinite;}
+@keyframes pt{0%,100%{opacity:0.45;}50%{opacity:0.9;}}
+.seal-lg{width:210px;height:210px;border:2px solid var(--gold);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 44px;position:relative;cursor:pointer;transition:all 0.4s;}
+.seal-lg::before{content:'';position:absolute;inset:10px;border:1px solid rgba(139,105,20,0.3);border-radius:50%;}
+.seal-lg::after{content:'';position:absolute;inset:18px;border:1px dotted rgba(139,105,20,0.18);border-radius:50%;}
+.seal-lg:hover{box-shadow:0 0 40px rgba(139,105,20,0.28),0 0 70px rgba(139,0,0,0.12);}
+.seal-k{font-family:var(--serif);font-size:60px;font-weight:700;color:var(--red);text-shadow:0 0 18px rgba(139,0,0,0.45);}
+.seal-st{font-family:var(--serif);font-size:9px;color:var(--gold);letter-spacing:0.4em;margin-top:6px;}
+.stamp-fx{display:none;position:fixed;inset:0;background:rgba(139,0,0,0.12);z-index:100;pointer-events:none;}
+/* HUB */
+#screen-hub{background:var(--ink);align-items:stretch;justify-content:stretch;overflow:hidden;}
+.hub-layout{display:grid;grid-template-columns:295px 1fr;height:100vh;width:100%;}
+.hub-sidebar{background:var(--parchment-dark);border-right:2px solid var(--border-dark);display:flex;flex-direction:column;overflow:hidden;position:relative;}
+.hub-sidebar::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(139,105,20,0.06) 28px,rgba(139,105,20,0.06) 29px);pointer-events:none;}
+.hub-sh{padding:26px 22px 18px;border-bottom:1px solid var(--border);text-align:center;background:var(--parchment);}
+.clan-mon{width:52px;height:52px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 9px;}
+.clan-mon-k{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--red);}
+.sb-clan{font-family:var(--serif);font-size:13px;font-weight:600;color:var(--ink);letter-spacing:0.28em;margin-bottom:3px;}
+.sb-sub{font-family:var(--display);font-size:8px;color:var(--ink-faded);letter-spacing:0.22em;text-transform:uppercase;}
+.subj-scroll{margin:14px 14px 6px;padding:13px 15px;background:var(--parchment);border:1px solid var(--border);position:relative;}
+.subj-scroll::before{content:'家紋';position:absolute;top:-7px;left:10px;background:var(--parchment);padding:0 5px;font-family:var(--serif);font-size:8px;color:var(--gold);letter-spacing:0.2em;}
+.sref{font-size:8px;color:var(--ink-faded);letter-spacing:0.2em;margin-bottom:3px;font-family:var(--display);}
+.snj{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.srm{font-family:var(--display);font-size:9px;color:var(--ink-faded);letter-spacing:0.22em;text-transform:uppercase;}
+.sbadges{margin-top:9px;display:flex;gap:5px;flex-wrap:wrap;}
+.badge{display:inline-block;padding:2px 7px;font-family:var(--display);font-size:7px;letter-spacing:0.18em;text-transform:uppercase;border:1px solid;}
+.bk{border-color:var(--red-dim);color:var(--red);background:var(--red-pale);}
+.bg{border-color:var(--gold);color:var(--gold);background:rgba(139,105,20,0.07);}
+.hub-nav{flex:1;overflow-y:auto;padding:6px 0;}
+.hub-nav::-webkit-scrollbar{width:2px;}
+.hub-nav::-webkit-scrollbar-thumb{background:var(--border);}
+.hub-nav-item{padding:10px 18px;cursor:pointer;display:flex;align-items:center;gap:9px;border-left:3px solid transparent;transition:all 0.22s;}
+.hub-nav-item:hover{background:rgba(139,105,20,0.07);border-left-color:var(--border);}
+.hub-nav-item.active{background:rgba(139,0,0,0.055);border-left-color:var(--red);}
+.hn-num{font-size:8px;color:var(--ink-faded);letter-spacing:0.18em;font-family:var(--display);width:20px;flex-shrink:0;}
+.hn-k{font-family:var(--serif);font-size:13px;color:var(--ink-faded);width:18px;flex-shrink:0;}
+.hn-l{font-family:var(--display);font-size:9px;color:var(--ink-faded);letter-spacing:0.14em;text-transform:uppercase;transition:color 0.2s;}
+.hub-nav-item:hover .hn-l,.hub-nav-item.active .hn-l{color:var(--ink);}
+.hn-dot{width:4px;height:4px;border-radius:50%;background:var(--red);margin-left:auto;opacity:0;transition:opacity 0.2s;}
+.hub-nav-item.active .hn-dot{opacity:1;}
+.hub-sf{padding:13px 14px;border-top:1px solid var(--border);background:var(--parchment);}
+.sf-seal{font-family:var(--serif);font-size:8px;color:var(--ink-faded);letter-spacing:0.22em;margin-bottom:3px;}
+.sf-date{font-family:var(--display);font-size:8px;color:var(--ink-faded);letter-spacing:0.14em;}
+/* CONTENT */
+.hub-content{background:var(--parchment);overflow-y:auto;position:relative;}
+.hub-content::-webkit-scrollbar{width:3px;}
+.hub-content::-webkit-scrollbar-thumb{background:var(--border);}
+.hub-content::before{content:'';position:fixed;top:0;right:0;width:calc(100% - 295px);height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 24px,rgba(139,105,20,0.035) 24px,rgba(139,105,20,0.035) 25px);pointer-events:none;z-index:1;}
+.content-page{display:none;min-height:100%;animation:unfurl 0.45s ease;position:relative;z-index:2;}
+.content-page.active{display:block;}
+@keyframes unfurl{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+.ch{padding:30px 44px 22px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;background:var(--parchment-dark);position:sticky;top:0;z-index:10;}
+.ch-deco{position:absolute;bottom:-1px;left:44px;width:56px;height:3px;background:var(--red);}
+.cs-jp{font-family:var(--serif);font-size:10px;color:var(--red);letter-spacing:0.28em;margin-bottom:5px;}
+.cs-t{font-family:var(--display);font-size:clamp(13px,1.7vw,19px);color:var(--ink);letter-spacing:0.18em;text-transform:uppercase;}
+.ch-meta{text-align:right;font-family:var(--display);font-size:8px;color:var(--ink-faded);letter-spacing:0.13em;line-height:2;}
+.cb{padding:38px 44px;max-width:860px;}
+/* DIVIDER */
+.bd{display:flex;align-items:center;gap:11px;margin:26px 0;}
+.bd-l{flex:1;height:1px;background:var(--border);}
+.bd-k{font-family:var(--serif);font-size:13px;color:var(--gold);}
+/* SECTION */
+.sb{margin-bottom:34px;}
+.sh{display:flex;align-items:center;gap:11px;margin-bottom:13px;}
+.sj{font-family:var(--serif);font-size:10px;color:var(--red);letter-spacing:0.18em;}
+.sl{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
+/* BODY TEXT */
+.bt{font-family:var(--serif);font-size:13px;color:var(--ink-light);line-height:2.1;font-weight:300;}
+.bt p{margin-bottom:15px;}.bt p:last-child{margin-bottom:0;}
+.hr{color:var(--red);font-weight:600;}.hg{color:var(--gold);font-weight:600;}.hi{color:var(--ink);font-weight:600;}
+/* QUOTE */
+.sq{margin:22px 0;padding:20px 26px;background:var(--parchment-deep);border:1px solid var(--border);border-left:3px solid var(--red);position:relative;}
+.sq::before{content:'✦';position:absolute;top:-7px;left:18px;background:var(--parchment-deep);padding:0 5px;font-size:11px;color:var(--red);}
+.sq-t{font-family:var(--serif);font-size:13px;color:var(--ink);line-height:1.85;font-style:italic;}
+.sq-a{font-family:var(--display);font-size:8px;color:var(--ink-faded);letter-spacing:0.18em;margin-top:10px;text-align:right;text-transform:uppercase;}
+/* TABLETS */
+.it{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px;margin:18px 0;}
+.tab{padding:13px 15px;background:var(--parchment-deep);border:1px solid var(--border);transition:all 0.2s;}
+.tab:hover{border-color:var(--red-dim);background:var(--parchment);}
+.tl2{font-family:var(--display);font-size:7px;color:var(--ink-faded);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:5px;}
+.tv{font-family:var(--serif);font-size:12px;color:var(--ink);font-weight:400;}
+/* HIDDEN */
+.hsb{display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border:1px dashed var(--border-dark);color:var(--ink-faded);font-family:var(--display);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;background:transparent;transition:all 0.28s;margin:14px 0;}
+.hsb:hover{border-color:var(--red);color:var(--red);background:var(--red-pale);}
+.hsc{display:none;padding:18px 22px;background:var(--parchment-deep);border:1px solid var(--border);border-left:2px solid var(--red);margin-top:7px;animation:unfurl 0.38s ease;}
+.hsc.show{display:block;}
+/* BLOOD NOTE */
+.bn{margin:18px 0;padding:14px 18px;background:rgba(139,0,0,0.055);border:1px solid var(--red-dim);display:flex;gap:11px;}
+.bn-i{color:var(--red);font-size:13px;flex-shrink:0;margin-top:2px;}
+.bn-t{font-family:var(--serif);font-size:11px;color:var(--ink-light);line-height:1.9;font-weight:300;}
+/* OBJ */
+.os{padding:16px 20px;border:1px solid var(--border);margin-bottom:9px;display:flex;gap:16px;transition:all 0.22s;position:relative;background:var(--parchment);overflow:hidden;}
+.os::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);transform:scaleY(0);transform-origin:bottom;transition:transform 0.28s;}
+.os:hover{background:var(--parchment-deep);}
+.os:hover::before{transform:scaleY(1);}
+.on{font-family:var(--serif);font-size:18px;color:rgba(139,0,0,0.18);flex-shrink:0;width:26px;line-height:1.2;}
+.ot{font-family:var(--display);font-size:10px;color:var(--ink);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:7px;}
+.od{font-family:var(--serif);font-size:11px;color:var(--ink-faded);line-height:2;font-weight:300;}
+/* TIMELINE */
+.tl{position:relative;padding-left:18px;}
+.tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--border),transparent);}
+.ti{position:relative;margin-bottom:26px;padding-left:18px;}
+.ti::before{content:'';position:absolute;left:-22px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--red);border:2px solid var(--parchment-dark);}
+.ti.gold::before{background:var(--gold);}
+.ti-l{font-family:var(--display);font-size:8px;color:var(--red);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:5px;}
+.ti.gold .ti-l{color:var(--gold);}
+.ti-t{font-family:var(--serif);font-size:11px;color:var(--ink-light);line-height:2;font-weight:300;}
+/* STAT */
+.sr{display:flex;align-items:center;gap:15px;margin-bottom:11px;}
+.sl2{font-family:var(--display);font-size:8px;color:var(--ink-faded);letter-spacing:0.13em;text-transform:uppercase;width:145px;flex-shrink:0;}
+.sbar{flex:1;height:3px;background:var(--parchment-deep);border:1px solid var(--border);}
+.sf{height:100%;background:var(--red);transition:width 1.2s ease;}
+.sf.g{background:var(--gold);}
+.sv{font-family:var(--display);font-size:8px;color:var(--ink-faded);width:26px;text-align:right;}
+/* VISION */
+.vb{margin:18px 0;padding:20px 22px;background:var(--parchment-dark);border:1px solid var(--border);position:relative;overflow:hidden;}
+.vl{font-family:var(--display);font-size:8px;color:var(--red);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;gap:7px;}
+.vl::before{content:'✦';color:var(--red);}
+.vt{font-family:var(--serif);font-size:12px;color:var(--ink-light);line-height:2;font-weight:300;}
+.va .vt{animation:bv 0.6s ease 3;}
+@keyframes bv{0%{color:var(--ink-light);}25%{color:var(--red);filter:blur(0.8px);}50%{color:var(--ink-light);filter:none;}75%{color:var(--red-dim);}100%{color:var(--ink-light);}}
+/* DECISION */
+.ds{padding:38px 44px;min-height:100%;display:flex;flex-direction:column;}
+.dp{flex:1;background:var(--parchment-deep);border:1px solid var(--border);padding:34px;margin-bottom:30px;position:relative;}
+.dp::before,.dp::after{content:'';position:absolute;left:11px;right:11px;height:1px;background:var(--border);}
+.dp::before{top:7px;}.dp::after{bottom:7px;}
+.djh{font-family:var(--serif);font-size:12px;color:var(--red);letter-spacing:0.3em;margin-bottom:5px;text-align:center;}
+.deh{font-family:var(--display);font-size:8px;color:var(--ink-faded);letter-spacing:0.28em;text-transform:uppercase;text-align:center;margin-bottom:22px;}
+.dd{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:18px 0;}
+.dsj{font-family:var(--display);font-size:clamp(11px,1.4vw,15px);color:var(--ink);letter-spacing:0.22em;text-transform:uppercase;text-align:center;margin:18px 0 14px;}
+.drt{font-family:var(--serif);font-size:12px;color:var(--ink-faded);line-height:2;font-weight:300;}
+.dbtns{display:flex;gap:11px;flex-wrap:wrap;}
+.dbtn{flex:1;min-width:150px;padding:13px 22px;border:1px solid;font-family:var(--display);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;background:transparent;transition:all 0.28s;outline:none;text-align:center;}
+.da{border-color:var(--gold);color:var(--gold);background:var(--parchment-dark);}
+.da:hover{background:rgba(139,105,20,0.09);box-shadow:0 0 18px rgba(139,105,20,0.22);}
+.dw{border-color:var(--ink-faded);color:var(--ink-faded);background:var(--parchment-dark);}
+.dw:hover{background:rgba(122,96,64,0.09);}
+.dr{border-color:var(--red);color:var(--red);background:var(--parchment-dark);}
+.dr:hover{background:rgba(139,0,0,0.07);box-shadow:0 0 18px rgba(139,0,0,0.18);}
+.dres{display:none;margin-top:18px;padding:20px 26px;border:1px solid var(--border);background:var(--parchment-deep);animation:unfurl 0.45s ease;}
+.dres.show{display:block;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--parchment-dark);}
+::-webkit-scrollbar-thumb{background:var(--border);}
+@media(max-width:768px){.hub-layout{grid-template-columns:1fr;}.hub-sidebar{height:auto;border-right:none;border-bottom:2px solid var(--border-dark);}.cb{padding:20px 22px;}.ch{padding:18px 22px;}.ds{padding:18px 22px;}.hub-content::before{width:100%;}}
+</style>
+</head>
+<body>
+
+<!-- SCREEN 1 -->
+<div class="screen active" id="screen-access">
+  <div class="corner-d tl"></div><div class="corner-d tr"></div>
+  <div class="corner-d bl"></div><div class="corner-d br"></div>
+  <div class="jp-vert l">加茂家秘伝記録院 ／ 第四世代候補生審査 ／ 機密保持対象</div>
+  <div class="jp-vert r">血液呪術継承者 ／ 医術修練候補 ／ 二〇二六年度審査</div>
+  <div style="text-align:center;">
+    <div class="mon-circle"><div class="mon-kanji">加</div></div>
+    <div class="access-title">加茂家　記録院</div>
+    <div class="access-sub">Archives Ancestrales du Clan Kamo</div>
+    <div class="access-div"></div>
+    <div class="access-meta">
+      <div class="access-meta-line">DOSSIER DE CANDIDATURE — 加茂 鳥居</div>
+      <div class="access-meta-line">RÉFÉRENCE : KMO-2026-0031</div>
+      <div class="access-meta-line" style="color:rgba(139,0,0,0.55);">CLASSIFICATION : ARCHIVES INTERNES</div>
+    </div>
+    <button class="btn-p" onclick="goToSeal()">OUVRIR LE DOSSIER</button>
+  </div>
+</div>
+
+<!-- SCREEN 2 -->
+<div class="screen" id="screen-seal">
+  <div class="corner-d tl"></div><div class="corner-d tr"></div>
+  <div class="corner-d bl"></div><div class="corner-d br"></div>
+  <div class="jp-vert l">封印解除には族長の承認が必要です</div>
+  <div style="text-align:center;" onclick="breakSeal()">
+    <div class="seal-inst">— Apposez votre sceau pour accéder aux archives —</div>
+    <div class="seal-lg"><div class="seal-k">血</div><div class="seal-st">加茂家　封印</div></div>
+    <div style="font-family:var(--display);font-size:8px;color:rgba(196,170,120,0.35);letter-spacing:0.28em;">SCEAU D'ACCÈS — KMO-2026-0031</div>
+  </div>
+  <div class="stamp-fx" id="stamp-fx"></div>
+</div>
+
+<!-- SCREEN 3 HUB -->
+<div class="screen" id="screen-hub">
+  <div class="hub-layout">
+    <div class="hub-sidebar">
+      <div class="hub-sh">
+        <div class="clan-mon"><div class="clan-Kamo">加</div></div>
+        <div class="sb-clan">加茂家</div>
+        <div class="sb-sub">Clan Kamo — Archives</div>
+      </div>
+      <div class="subj-scroll">
+        <div class="sref">DOSSIER KAMO-2026-0031</div>
+        <div class="snj">加茂 鳥居</div>
+        <div class="srm">Kamo Torii</div>
+        <div class="sbadges">
+          <span class="badge bk">Clan Kamo</span>
+          <span class="badge bg">Médecin</span>
+        </div>
+      </div>
+      <nav class="hub-nav">
+        <div class="hub-nav-item active" onclick="sp('identite')"><span class="hn-num">[一]</span><span class="hn-k">識</span><span class="hn-l">Identité</span><span class="hn-dot"></span></div>
+        <div class="hub-nav-item" onclick="sp('caractere')"><span class="hn-num">[二]</span><span class="hn-k">心</span><span class="hn-l">Caractère</span><span class="hn-dot"></span></div>
+        <div class="hub-nav-item" onclick="sp('histoire')"><span class="hn-num">[三]</span><span class="hn-k">歴</span><span class="hn-l">Histoire</span><span class="hn-dot"></span></div>
+        <div class="hub-nav-item" onclick="sp('objectifs')"><span class="hn-num">[四]</span><span class="hn-k">目</span><span class="hn-l">Objectifs</span><span class="hn-dot"></span></div>
+        <div class="hub-nav-item" onclick="sp('technique')"><span class="hn-num">[五]</span><span class="hn-k">術</span><span class="hn-l">Technique & Exp.</span><span class="hn-dot"></span></div>
+        <div class="hub-nav-item" onclick="sp('decision')"><span class="hn-num">[六]</span><span class="hn-k">決</span><span class="hn-l">Décision</span><span class="hn-dot"></span></div>
+      </nav>
+      <div class="hub-sf">
+        <div class="sf-seal">加茂家記録院 ／ 機密文書</div>
+        <div class="sf-date">Archives — 2026.05.01</div>
+      </div>
+    </div>
+
+    <div class="hub-content" id="hub-content">
+
+      <!-- 一 IDENTITE -->
+      <div class="content-page active" id="page-identite">
+        <div class="ch">
+          <div><div class="cs-jp">一ノ章 ／ 候補生識別</div><div class="cs-t">Identité du candidat</div></div>
+          <div class="ch-meta"><span class="badge bk">Archives internes</span><br><br>RÉF. KMO-2026-0031<br>2026.05.01</div>
+          <div class="ch-deco"></div>
+        </div>
+        <div class="cb">
+          <div class="it">
+            <div class="tab"><div class="tl2">Nom japonais</div><div class="tv" style="font-size:17px;font-weight:700;">加茂 鳥居</div></div>
+            <div class="tab"><div class="tl2">Romanisation</div><div class="tv">Kamo Torii</div></div>
+            <div class="tab"><div class="tl2">Clan</div><div class="tv" style="color:var(--red);">加茂家</div></div>
+            <div class="tab"><div class="tl2">Technique</div><div class="tv">Manipulation du sang</div></div>
+            <div class="tab"><div class="tl2">Ambition</div><div class="tv" style="color:var(--gold);">Médecin exorciste</div></div>
+            <div class="tab"><div class="tl2">Statut</div><div class="tv" style="color:var(--ink-faded);">En évaluation</div></div>
+          </div>
+          <div class="bd"><div class="bd-l"></div><div class="bd-k">候補</div><div class="bd-l"></div></div>
+          <div class="sb">
+            <div class="sh"><div class="sj">候補生概要</div><div class="sl"></div></div>
+            <div class="bt">
+              <p>Au premier regard, <span class="hi">Torii Kamo</span> ne correspond pas à l'image qu'on associe aux membres du Clan Kamo. Il parait assez petit, <span class="hr">cheveux rouges mi-longs</span>, un corps plutot  discret qui n'impressionne personne. Il passe facilement inaperçu et au fond, ça lui convient.</p>
+              <p>Ce que son apparence ne dit pas, c'est que Torii est le fruit d'une éducation sévère, menée dans le respect absolu des traditions du clan Kamo. Chaque règle intégrée dans son esprit via l'éducation qu'il a eu l'a forgé, mais non pas par peur mais par conviction que la discipline du clan a un sens.</p>
+            </div>
+          </div>
+          <div class="sq"><div class="sq-t">On sous-estime toujours celui qui sourit avant de frapper.</div><div class="sq-a">— Kamo Torii, paroles enregistrées</div></div>
+          <button class="hsb" onclick="ts('si1')">✦ Lire la note d'observation terrain</button>
+          <div class="hsc" id="si1">
+            <div style="font-family:var(--display);font-size:8px;color:var(--red);letter-spacing:0.18em;margin-bottom:9px;">NOTE INTERNE — OBSERVATEUR CLAN</div>
+            <div class="bt"><p>Torii exploite consciemment ou non la perception que les autres ont de lui. Sa douceur naturelle, son sourire facile, tout cela crée un espace de confiance que les autres personnages investissent spontanément. <span class="hg">C'est une qualité rare chez un exorciste en formation.</span> Le soin médical n'est pas juste une compétence c'est une façon d'être.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 二 CARACTERE -->
+      <div class="content-page" id="page-caractere">
+        <div class="ch">
+          <div><div class="cs-jp">二ノ章 ／ 心理的特性</div><div class="cs-t">Caractère & psychologie</div></div>
+          <div class="ch-meta"><span class="badge bg">Analyse interne</span><br><br>ARCHIVISTE : Unité Kamo<br>PROFIL : STABLE</div>
+          <div class="ch-deco"></div>
+        </div>
+        <div class="cb">
+          <div class="sb">
+            <div class="sh"><div class="sj">基本性格</div><div class="sl"></div></div>
+            <div class="bt">
+              <p>Torii est quelqu'un de <span class="hi">fondamentalement doux</span>. Il écoute avant de parler, observe avant d'agir, prend le temps de comprendre une situation avant d'y répondre. Cette patience n'est pas de la passivité, c'est un respect naturel qu'il porte aux gens et aux situations.</p>
+              <p>Malgré une éducation stricte qui aurait pu effacer cette sensibilité, Torii a su préserver ce qu'il est. Il respecte les règles du clan, suit la hiérarchie mais sans y perdre ce qui fait son bonheur, sa gentillesse. Avoir intégré la rigueur du Clan Kamo <span class="hr">sans en changer tout ce qu'il était</span> est peut-être sa caractéristique la plus remarquable.</p>
+            </div>
+          </div>
+          <div class="vb" id="vblock">
+            <div class="vl">RAPPORT SPÉCIAL — RELATION PÈRE / FILS</div>
+            <div class="vt" id="vtext">Au fil du temps, quelque chose de plus profond que le simple respect s'est installé. Une <span class="hr">certaine idolatrie pour son père est apparu</span>. Torii ne cherche pas juste à bien faire. Il cherche à rendre son père fier. C'est devenu le moteur silencieux de presque tout ce qu'il entreprend.</div>
+            <div style="margin-top:13px;"><button class="hsb" onclick="tv2()" style="border-style:solid;border-color:var(--red-dim);color:var(--red);">✦ Accéder à l'analyse approfondie</button></div>
+          </div>
+          <div class="sb" style="margin-top:26px;">
+            <div class="sh"><div class="sj">心理評価指標</div><div class="sl"></div></div>
+            <div class="sr"><span class="sl2">EMPATHIE</span><div class="sbar"><div class="sf g" style="width:92%"></div></div><span class="sv">92</span></div>
+            <div class="sr"><span class="sl2">DISCIPLINE</span><div class="sbar"><div class="sf" style="width:88%"></div></div><span class="sv">88</span></div>
+            <div class="sr"><span class="sl2">SANG-FROID</span><div class="sbar"><div class="sf g" style="width:78%"></div></div><span class="sv">78</span></div>
+            <div class="sr"><span class="sl2">AMBITION</span><div class="sbar"><div class="sf" style="width:85%"></div></div><span class="sv">85</span></div>
+            <div class="sr"><span class="sl2">FIABILITÉ</span><div class="sbar"><div class="sf g" style="width:95%"></div></div><span class="sv">95</span></div>
+          </div>
+          <button class="hsb" onclick="ts('sc1')">✦ Note cachée — tension intérieure</button>
+          <div class="hsc" id="sc1">
+            <div style="font-family:var(--display);font-size:8px;color:var(--gold);letter-spacing:0.18em;margin-bottom:9px;">NOTE CONFIDENTIELLE — ARCHIVISTE PRINCIPAL</div>
+            <div class="bt"><p>Ce que l'analyse ne montre pas : <span class="hg">Torii porte un poids silencieux</span>. Chaque erreur pèse deux fois plus lourd chez lui. Non pas parce qu'il est fragile, mais parce qu'il se juge au charisme que son père impose. Cette pression auto-imposée est à la fois sa plus grande force et sa vulnérabilité principale.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 三 HISTOIRE -->
+      <div class="content-page" id="page-histoire">
+        <div class="ch">
+          <div><div class="cs-jp">三ノ章 ／ 来歴記録</div><div class="cs-t">Histoire du candidat</div></div>
+          <div class="ch-meta"><span class="badge bk">Archives</span><br><br>SOURCE : Clan Kamo<br>PÉRIODE : Enfance—Présent</div>
+          <div class="ch-deco"></div>
+        </div>
+        <div class="cb">
+          <div class="sb">
+            <div class="sh"><div class="sj">来歴</div><div class="sl"></div></div>
+            <div class="tl">
+              <div class="ti"><div class="ti-l">ENFANCE — L'HÉRITAGE</div><div class="ti-t">Torii grandit dans le cadre strict du Clan Kamo. Entraînements quotidiens, apprentissage des techniques liées au sang, respect de la hiérarchie et des traditions. Son père attendait beaucoupde lui et Torii a toujours cherché à être à la hauteur. Pas par obligation. Par <span class="hr">amour filial profond</span>, presque démesuré.</div></div>
+              <div class="ti gold"><div class="ti-l">LE TOURNANT — LA BIBLIOTHÈQUE</div><div class="ti-t">Un après-midi, en se baladant seul dans une bibliothèque, Torii tombe sur un vieux livre de médecine. Les schémas anatomiques, la logique des soins pour un enfant dont la technique repose sur le sang, c'est une révélation. Il lit pendant des heures, assis par terre. Quand il repart, quelque chose a changé : <span class="hg">il ne pense plus seulement à blesser. Il veut apprendre à réparer.</span></div></div>
+              <div class="ti"><div class="ti-l">CONSTRUCTION — LA DOUBLE VOIE</div><div class="ti-t">Torii choisit de poursuivre les deux chemins en parallèle l'exorcisme, héritage du clan, et la médecine, vocation personnelle. Il espère que son père sera fier de cette double ambition. Que soigner sera perçu comme une force, pas une distraction.</div></div>
+              <div class="ti gold"><div class="ti-l">AUJOURD'HUI — CANDIDATURE</div><div class="ti-t">Torii se présente pour intégrer la nouvelle génération du Clan Kamo. Il arrive avec une identité claire, un projet précis, et une relation complexe à son héritage. <span class="hg">Il est prêt. La question est de savoir si le clan est prêt pour quelqu'un comme lui.</span></div></div>
+            </div>
+          </div>
+          <button class="hsb" onclick="ts('sh1')">✦ Le livre de médecine — archive objet</button>
+          <div class="hsc" id="sh1">
+            <div style="font-family:var(--display);font-size:8px;color:var(--gold);letter-spacing:0.18em;margin-bottom:9px;">ARCHIVE — OBJET SIGNIFICATIF</div>
+            <div class="bt"><p>Le livre n'a jamais quitté Torii depuis ce jour. Pages cornées, annotations dans les marges, passages soulignés en rouge. <span class="hr">Il est devenu son objet le plus précieux</span> plus que n'importe quelle arme. Pour lui, ce livre représente le moment où il a décidé de qui il voulait être, indépendamment de ce qu'on attendait de lui.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 四 OBJECTIFS -->
+      <div class="content-page" id="page-objectifs">
+        <div class="ch">
+          <div><div class="cs-jp">四ノ章 ／ 目標宣言</div><div class="cs-t">Objectifs opérationnels</div></div>
+          <div class="ch-meta"><span class="badge bk">Déclaration</span><br><br>TYPE : Long terme<br>ORIENTATION : Collectif</div>
+          <div class="ch-deco"></div>
+        </div>
+        <div class="cb">
+          <div class="bn"><div class="bn-i">✦</div><div class="bn-t">Ces objectifs décrivent des <strong>actions concrètes observables en jeu</strong>. Chaque point a été pensé pour générer du RP pour les autres joueurs autant que pour Torii lui-même.</div></div>
+          <div class="sb">
+            <div class="sh"><div class="sj">加茂家への貢献</div><div class="sl"></div></div>
+            <div class="os"><div class="on">一</div><div><div class="ot">MÉDECIN ATTITRÉ DU CLAN KAMO</div><div class="od">L'objectif de Torii vis-à-vis du clan n'est pas juste "d'en faire partie et de le représenter". C'est de s'y rendre indispensable d'une façon que personne d'autre ne peut remplir.En développant sa branche médicale, Torii veut devenir le médecin attitré du Clan Kamo. Concrètement, ça veut dire qu'après chaque mission, chaque combat, chaque incident impliquant un membre du clan, c'est lui qu'on appelle. Il veut créer un protocole de soins propre au clan : un suivi des blessures, une gestion des séquelles liées à l'utilisation de la technique maudite du sang, une mémoire des états de santé des membres. Quelque chose de structuré, qui n'existait pas avant lui.</div></div></div>
+            <div class="os"><div class="on">二</div><div><div class="ot">VOIX MÉDICALE DANS LES DÉCISIONS DU CLAN</div><div class="od"></div>Il veut également être présent dans les décisions internes qui touchent à l'intégrité physique des membres. Si quelqu'un est envoyé en mission dans un état qui l'expose trop, Torii sera celui qui le dit. Pas pour contester l'autorité du clan mais parce que son rôle l'oblige à parler quand la santé de quelqu'un est en jeu. Ce positionnement créera naturellement des tensions et des discussions intéressantes avec les anciens et les figures d'autorité du clan.À plus long terme, l'idée est de créer un vrai espace médical propre au clan un lieu en jeu où les membres peuvent venir se faire soigner, se reposer. Un endroit qui donne une identité supplémentaire au Clan Kamo sur le serveur.</div></div>
+          </div>
+          <div class="bd"><div class="bd-l"></div><div class="bd-k">学校</div><div class="bd-l"></div></div>
+          <div class="sb">
+            <div class="sh"><div class="sj">学校への貢献</div><div class="sl"></div></div>
+            <div class="os"><div class="on">三</div><div><div class="ot">FONDER UNE BRANCHE MÉDICALE À L'ÉCOLE</div><div class="od">Pas juste soigner les gens qui viennent. <span class="hg">Créer une institution</span> notamment avec des cours de premiers secours adaptés aux exorcistes (je suis également sapeur-pompier volontaire à coté des jeux, j'ai donc des bases solides dans tout ce qui est médecine et premiers secours), espace de soin. Former les élèves à gérer les hémorragies liées aux techniques maudites, à soigner un combattant après un affrontement. Une génération qui sait se soigner les uns les autres.</div></div></div>
+            <div class="os"><div class="on">四</div><div><div class="ot">EXAMENS MÉDICAUX PRÉ-MISSION</div><div class="od">Un check-up simple avant chaque mission importante. Un moment de RP naturel et régulier, ancré dans le quotidien du serveur. Ces scènes courtes permettent des échanges, des liens qui se créent sans forcer les choses.</div></div></div>
+            <div class="os" style="border-color:var(--red-dim);"><div class="on" style="color:rgba(139,0,0,0.35);">五</div><div><div class="ot" style="color:var(--red);">ARC DE LA PERTE DE VUE — TOURNANT COLLECTIF</div><div class="od">L'objectif le plus important de Torii, celui qui guide tout le reste, c'est d'être un personnage qui crée des raisons de jouer pour les autres.Un médecin en RP actif, c'est quelqu'un dont tout le monde a besoin à un moment ou un autre. Après un combat difficile, une mission qui a mal tourné, un arc émotionnel lourd Torii est là. Mais il ne se contente pas d'attendre que les gens viennent. Il va vers eux. Il propose ses services, il suit l'état des personnes qu'il a soignées, il relance des interactions qui auraient pu s'arrêter après une scène de combat.Concrètement, l'idée est de tenir un suivi médical de certains personnages sur le long terme des joueurs avec qui Torii aura créé un lien, dont il connaît les blessures anciennes, les faiblesses physiques, les séquelles. Ce genre détail rend les relations entre personnages bien plus riches et réalistes, et donne aux autres joueurs l'impression que leur personnage existe vraiment dans le monde du serveur.
+Et puis il y a l'arc de la perte de vue. Ce moment-là ne sera pas joué en solo. Torii préviendra les joueurs proches de son personnage, construira des scènes autour de ça, fera en sorte que cet événement touche le plus de gens possible de façon cohérente.</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 五 TECHNIQUE -->
+      <div class="content-page" id="page-technique">
+        <div class="ch">
+          <div><div class="cs-jp">五ノ章 ／ 術式・経歴記録</div><div class="cs-t">Technique & Expérience</div></div>
+          <div class="ch-meta"><span class="badge bk">Confidentiel</span><br><br>SOURCE : Archives Kamo<br>CLASSIFICATION : Héritage</div>
+          <div class="ch-deco"></div>
+        </div>
+        <div class="cb">
+          <div class="sb">
+            <div class="sh"><div class="sj">呪術式</div><div class="sl"></div></div>
+            <div class="bt">
+              <p>Torii hérite de la <span class="hr">Technique de Manipulation du Sang</span>, technique ancestrale du Clan Kamo. Cette aptitude prend une dimension particulière chez lui, là où elle est traditionnellement une arme offensive, Torii envisage très tôt son potentiel médical, comprendre la circulation, anticiper les hémorragies, contrôler les pertes de sang en situation d'urgence.</p>
+              <p>Sa maîtrise restera <span class="hi">honnête et progressive</span>. Pas de montée en puissance artificielle. Des limites réelles, des échecs documentés, une progression visible sur le long terme.</p>
+            </div>
+          </div>
+          <div class="bd"><div class="bd-l"></div><div class="bd-k">経歴</div><div class="bd-l"></div></div>
+          <div class="sb">
+            <div class="sh"><div class="sj">RP経験記録</div><div class="sl"></div></div>
+            <div class="bt"><p>Le candidat présente <span class="hg">700 heures de jeu sur Garry's Mod</span>, accumulées sur plusieurs serveurs.</p></div>
+            <div class="it" style="margin-top:18px;">
+              <div class="tab"><div class="tl2">Heures de jeu</div><div class="tv" style="font-size:21px;color:var(--red);font-weight:700;">700h</div></div>
+              <div class="tab"><div class="tl2">Rôle majeur</div><div class="tv">Staff / Professeur</div></div>
+              <div class="tab"><div class="tl2">Serveur principal</div><div class="tv">SDA JJK</div></div>
+            </div>
+            <div class="bt" style="margin-top:15px;"><p>Mon passage en <span class="hi">staff sur la SDA JJK</span> est réellement mon meilleur "arc" sur les RP, j'ai vraiment envie de retrouver cette joie que j'avais avant lorsque je lançais un serveur . Animer des arcs pour d'autres joueurs, créer des événements, maintenir une cohérence narrative sur des semaines, j'ai appris que le meilleur RP est celui qui donne envie aux autres de jouer.</p></div>
+            <div class="it" style="margin-top:14px;"
+              <div class="tab"><div class="tl2">Serveur</div><div class="tv" style="font-size:11px;">KB MHA / KB JJK</div></div>
+              <div class="tab"><div class="tl2">Serveur</div><div class="tv" style="font-size:11px;">Abyssal TKG</div></div>
+              <div class="tab"><div class="tl2">Serveur</div><div class="tv" style="font-size:11px;">Bougha AoT</div></div>
+            </div>
+          </div>
+          <div class="sb">
+            <div class="sh"><div class="sj">HRP動機</div><div class="sl"></div></div>
+            <div class="bt"><p>Ce qui attire dans cette place Kamo, c'est avant tout l'arc narratif proposé par Eiko. La perte de vue en RP est le genre de projet qui ne se trouve pas partout ça demande de la créativité, de l'investissement, une vraie envie de construire quelque chose de durable. <span class="hg">Je ne viens pas ici pour jouer un personnage. Je viens pour contribuer à ce que vous construisez.</span></p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 六 DÉCISION -->
+      <div class="content-page" id="page-decision">
+        <div class="ch">
+          <div><div class="cs-jp">六ノ章 ／ 最終決定</div><div class="cs-t">Décision du clan</div></div>
+          <div class="ch-meta"><span class="badge bk">Décision requise</span><br><br>AUTORITÉ : Clan Kamo<br>PRIORITÉ : HAUTE</div>
+          <div class="ch-deco"></div>
+        </div>
+        <div class="ds">
+          <div class="dp">
+            <div class="djh">加茂家　最終判決書</div>
+            <div class="deh">ACTE DE DÉCISION — ARCHIVES CLAN KAMO</div>
+            <div class="dd"></div>
+            <div class="drt">
+              <p>Le dossier <span class="hr">加茂 鳥居</span> présente un profil rare parmi les candidats de cette génération. Une douceur authentique dans un clan connu pour sa rigueur. Une ambition médicale qui transforme la technique du sang en outil de soin autant que de combat. Un investissement narratif orienté vers le collectif.</p>
+              <p style="margin-top:15px;">L'arc prévu avec Eiko la perte de vue est l'élément le plus singulier de ce dossier. <span class="hg">Un candidat qui accepte d'avance un handicap majeur en RP, et qui en fait un projet collectif, mérite une attention particulière.</span> Ce n'est pas commun. C'est le signe d'une maturité narrative que peu de candidats démontrent dès leur entrée.</p>
+              <p style="margin-top:15px;">La relation à son père cette admiration qui frise l'idolâtrie est le moteur émotionnel qui alimentera ses interactions les plus profondes. Elle est à la fois sa force et sa fragilité. Bien accompagné, ce trait peut produire des scènes d'une profondeur rare.</p>
+            </div>
+            <div class="dd"></div>
+            <div class="dsj">STATUT : KAMO TORII — 加茂 鳥居</div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px;justify-content:center;">
+              <span class="badge bk">Clan Kamo</span>
+              <span class="badge bg">Profil Médecin</span>
+              <span class="badge" style="border-color:var(--ink-faded);color:var(--ink-faded);">En attente</span>
+            </div>
+          </div>
+          <div class="dbtns">
+            <button class="dbtn da" onclick="sd('accept')">✦ Accueillir dans le clan</button>
+            <button class="dbtn dw" onclick="sd('watch')">— Période d'observation</button>
+            <button class="dbtn dr" onclick="sd('refuse')">✕ Écarter le dossier</button>
+          </div>
+          <div class="dres" id="dres"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function ft(from,to){const f=document.getElementById(from),t=document.getElementById(to);f.classList.add('fade-out');setTimeout(()=>{f.classList.remove('active','fade-out');t.classList.add('active');},1200);}
+function goToSeal(){ft('screen-access','screen-seal');}
+function breakSeal(){const s=document.getElementById('stamp-fx');s.style.display='block';setTimeout(()=>{s.style.opacity='0';s.style.transition='opacity 0.6s';},80);setTimeout(()=>{s.style.display='none';s.style.opacity='1';s.style.transition='';ft('screen-seal','screen-hub');},900);}
+function sp(id){document.querySelectorAll('.content-page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.hub-nav-item').forEach(n=>n.classList.remove('active'));const el=document.getElementById('page-'+id);if(el)el.classList.add('active');const m=['identite','caractere','histoire','objectifs','technique','decision'];const i=m.indexOf(id);const items=document.querySelectorAll('.hub-nav-item');if(i>=0&&items[i])items[i].classList.add('active');document.getElementById('hub-content').scrollTop=0;}
+function ts(id){const el=document.getElementById(id);if(el)el.classList.toggle('show');}
+function tv2(){const b=document.getElementById('vblock');b.classList.add('va');setTimeout(()=>{b.classList.remove('va');const n=document.createElement('div');n.className='hsc show';n.style.marginTop='13px';n.innerHTML=`<div style="font-family:var(--display);font-size:8px;color:var(--red);letter-spacing:0.18em;margin-bottom:9px;">ANALYSE APPROFONDIE — ARCHIVISTE PRINCIPAL</div><div class="bt"><p>Ce que l'analyse de surface ne capture pas : Torii n'admire pas son père de façon aveugle. Il l'admire <span class="hr">parce qu'il a décidé de le faire</span>. Cette admiration est choisie, cultivée, entretenue. Elle lui donne une direction, un horizon. Le risque : si la fierté tant espérée ne vient pas sous la forme attendue, <span class="hg">l'arc de Torii pourrait prendre une dimension tragique d'une très grande richesse narrative.</span></p></div>`;b.appendChild(n);},1800);}
+function sd(t){const r=document.getElementById('dres');const m={accept:{c:'var(--gold)',l:'✦ DOSSIER ACCEPTÉ — INTÉGRATION CLAN KAMO',tx:'Le Clan Kamo accueille 加茂 鳥居 parmi ses rangs. Son profil médical, sa douceur assumée et son engagement narratif collectif font de lui un apport précieux. L\'arc prévu avec Eiko est validé. Que le sang du clan coule en lui avec honneur.'},watch:{c:'var(--ink-faded)',l:'— PÉRIODE D\'OBSERVATION ACCORDÉE',tx:'Le dossier présente des qualités réelles mais une période d\'évaluation terrain est nécessaire avant intégration définitive. Le candidat sera suivi. Le clan se réserve le droit de statuer à l\'issue de cette période.'},refuse:{c:'var(--red)',l:'✕ DOSSIER ÉCARTÉ',tx:'Malgré les qualités indéniables du candidat, le Clan Kamo ne peut intégrer ce profil à ce stade. Le dossier est archivé. Aucune communication de cette décision ne doit sortir des archives internes.'}};const v=m[t];r.innerHTML=`<div style="font-family:var(--display);font-size:9px;color:${v.c};letter-spacing:0.22em;margin-bottom:13px;text-transform:uppercase;">${v.l}</div><div class="drt">${v.tx}</div><div style="margin-top:14px;font-family:var(--display);font-size:7px;color:var(--border-dark);letter-spacing:0.18em;">加茂家記録院 — KMO-2026-0031 — ${new Date().toLocaleDateString('fr-FR')}</div>`;r.classList.add('show');document.querySelectorAll('.dbtn').forEach(b=>{b.style.opacity='0.32';b.style.pointerEvents='none';});}
+</script>
+</body>
+</html>
